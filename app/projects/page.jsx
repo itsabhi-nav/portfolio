@@ -1,7 +1,6 @@
 'use client'
 
 import ProjectCard from '../../components/ProjectCard'
-import { useState } from 'react'
 
 const projectList = [
   {
@@ -28,33 +27,20 @@ const projectList = [
 ]
 
 export default function ProjectsPage() {
-  const [filter, setFilter] = useState('All')
-  const filteredProjects = filter === 'All'
-    ? projectList
-    : projectList.filter(p => p.tech.includes(filter))
-
-  const techTags = ['All', 'React Native', 'AI', 'Next.js', 'Kotlin', 'Embedded C']
-
   return (
-    <section className="px-6 py-16 max-w-6xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8 text-center">Projects</h1>
-
-      <div className="flex flex-wrap justify-center gap-3 mb-10">
-        {techTags.map(tag => (
-          <button
-            key={tag}
-            onClick={() => setFilter(tag)}
-            className={`px-3 py-1 rounded-full border hover:bg-foreground hover:text-background transition ${
-              filter === tag ? 'bg-foreground text-background' : ''
-            }`}
-          >
-            {tag}
-          </button>
-        ))}
+    <section className="px-4 sm:px-6 py-20 sm:py-28 max-w-6xl mx-auto scroll-mt-20">
+      <div className="text-center mb-16">
+        <h1 className="text-3xl sm:text-5xl font-bold text-foreground tracking-tight mb-4 animate-fade-in-up">
+          🚀 Featured Projects
+        </h1>
+        <div className="h-1 w-24 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full animate-pulse" />
+        <p className="mt-4 text-muted-foreground text-base sm:text-lg">
+          A showcase of the products, platforms, and tools I've passionately built.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map((project, idx) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 animate-fade-in">
+        {projectList.map((project, idx) => (
           <ProjectCard key={idx} {...project} />
         ))}
       </div>

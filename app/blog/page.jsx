@@ -1,7 +1,7 @@
 'use client'
 
-import BlogCard from '../../components/BlogCard'
 import { useState } from 'react'
+import BlogCard from '../../components/BlogCard'
 
 const blogPosts = [
   {
@@ -33,21 +33,37 @@ export default function BlogPage() {
   )
 
   return (
-    <section className="px-6 py-16 max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8 text-center">Blog</h1>
+    <section className="px-4 sm:px-6 py-24 sm:py-32 max-w-4xl mx-auto scroll-mt-20">
+      <header className="text-center mb-16">
+        <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight mb-4">
+          📝 Read My Thoughts
+        </h1>
+        <p className="text-muted-foreground text-base sm:text-lg">
+          From building smart apps to optimizing APIs — here's what I’ve learned & explored.
+        </p>
+        <div className="h-1 w-24 bg-gradient-to-r from-primary to-secondary mx-auto mt-4 rounded-full animate-pulse" />
+      </header>
 
-      <input
-        type="text"
-        placeholder="Search blog posts..."
-        className="w-full mb-10 px-4 py-2 border rounded"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="mb-14">
+        <input
+          type="text"
+          placeholder="Search articles by title or topic..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full px-5 py-3 rounded-md border border-border shadow-sm focus:outline-none focus:ring-2 focus:ring-primary text-sm sm:text-base transition-all bg-background"
+        />
+      </div>
 
-      <div className="flex flex-col gap-6">
-        {filteredPosts.map((post, idx) => (
-          <BlogCard key={idx} {...post} />
-        ))}
+      <div className="flex flex-col gap-10">
+        {filteredPosts.length > 0 ? (
+          filteredPosts.map((post, idx) => (
+            <BlogCard key={idx} {...post} />
+          ))
+        ) : (
+          <p className="text-center text-muted-foreground text-sm sm:text-base mt-10">
+            😕 No blog posts match your search. Try a different keyword.
+          </p>
+        )}
       </div>
     </section>
   )
