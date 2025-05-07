@@ -3,6 +3,7 @@ import { ThemeProvider } from 'next-themes';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ScrollProgress from '../components/ScrollProgress';
+import Loader from './loader';
 
 import AIChatBot from '../components/AIChatBot';
 // import FloatingIcons from '../components/FloatingIcons';
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ScrollProgress />
+          <Loader />
           <Navbar />
           <main>{children}</main>
           <Footer />
